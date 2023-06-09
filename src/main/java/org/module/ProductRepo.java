@@ -2,7 +2,7 @@ package org.module;
 
 import java.util.List;
 
-public class ProductRepo {
+public class ProductRepo{
     List<Product> products;
 
     public ProductRepo(){}
@@ -23,6 +23,5 @@ public class ProductRepo {
     public List<Product> getProducts() {
         return products;
     }
-
 
 }

@@ -2,7 +2,7 @@ package org.module;
 
 import java.util.List;
 
-public class Order {
+public class Order extends ShopService {
     int id;
     List<Product> products;
 
