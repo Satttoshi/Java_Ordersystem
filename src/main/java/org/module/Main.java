@@ -63,10 +63,7 @@ public class Main {
             System.out.println("Please enter an OrderID: ");
             int orderID = scanner.nextInt();
 
-
-
             // Check if int OrderID is already in use
-
 
             Order order = new Order(orderID, products);
             shopService.addOrder(order);
@@ -79,7 +76,6 @@ public class Main {
         }
 
     }
-
 
     public static boolean userChoice() {
         String choice = scanner.nextLine();

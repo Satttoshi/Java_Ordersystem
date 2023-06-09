@@ -1,12 +1,15 @@
 package org.module;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepo {
 
     List<Order> orders;
 
-    public OrderRepo(){}
+    public OrderRepo(){
+        this.orders = new ArrayList<>();
+    }
 
     public OrderRepo(List<Order> orders) {
         this.orders = orders;
