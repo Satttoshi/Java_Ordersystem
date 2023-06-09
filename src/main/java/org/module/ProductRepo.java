@@ -5,6 +5,8 @@ import java.util.List;
 public class ProductRepo {
     List<Product> products;
 
+    public ProductRepo(){}
+
     public ProductRepo(List<Product> products) {
         this.products = products;
     }
