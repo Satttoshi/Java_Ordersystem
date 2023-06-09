@@ -20,7 +20,7 @@ public class ProductRepo{
 
     public Product getProduct(String name) {
         for (Product product : products) {
-            if (product.name.equals(name)) {
+            if (product.name.equalsIgnoreCase(name)) {
                 return product;
             }
         }
@@ -30,5 +30,4 @@ public class ProductRepo{
     public List<Product> getProducts() {
         return products;
     }
-
 }

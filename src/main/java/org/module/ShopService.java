@@ -24,6 +24,10 @@ public class ShopService {
         return productRepo.getProduct(id);
     }
 
+    public Product getProduct(String name) {
+        return productRepo.getProduct(name);
+    }
+
     public void addOrder(Order order) {
         orderRepo.addOrder(order);
     }

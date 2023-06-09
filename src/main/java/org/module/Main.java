@@ -8,7 +8,6 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-
         ShopService shopService = new ShopService(List.of(
             new Product(0, "Nike Shoes"),
             new Product(1, "Polo Shirt"),
@@ -18,24 +17,32 @@ public class Main {
         ));
 
         System.out.println("Welcome to the shop!");
-        System.out.println("Do you want to view a Product?");
+        System.out.print("Do you want to view a Product? Yes/No: ");
         if(userChoice()) {
-            System.out.println("Enter the ID of the product you want to view: ");
-            int id = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println(shopService.getProduct(id));
+            System.out.print("Enter the ID or name of the product you want to view: ");
+            try {
+                int id = scanner.nextInt();
+                System.out.println(shopService.getProduct(id));
+            } catch (Exception e) {
+                String name = scanner.nextLine();
+                System.out.println(shopService.getProduct(name));
+            }
         }
 
+        System.out.print("Do you also want to view all Products? Yes/No: ");
 
+        if(userChoice()) {
+            System.out.println(shopService.getProducts());
+        }
 
+        System.out.println("Do you want to add an Order?");
 
-        System.out.println(shopService.getProducts());
 
 
     }
 
+
     public static boolean userChoice() {
-        System.out.println("Yes or No?: ");
         String choice = scanner.nextLine();
         String choiceLower = choice.toLowerCase();
         if (choiceLower.equals("yes") || choiceLower.equals("y")) {
@@ -43,7 +50,9 @@ public class Main {
         } else if (choiceLower.equals("no") || choiceLower.equals("n")) {
             return false;
         } else {
-            System.out.println("Invalid input, please try again.");
+            if(!choiceLower.equals("")) {
+                System.out.println("Invalid input, please try again.");
+            }
             return userChoice();
         }
     }
