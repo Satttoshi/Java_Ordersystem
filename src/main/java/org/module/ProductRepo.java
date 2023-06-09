@@ -8,4 +8,19 @@ public class ProductRepo {
     public ProductRepo(List<Product> products) {
         this.products = products;
     }
+
+    public Product getProductById(int id) {
+        for (Product product : products) {
+            if (product.id == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+
 }
