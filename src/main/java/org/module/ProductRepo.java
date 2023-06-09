@@ -5,8 +5,6 @@ import java.util.List;
 public class ProductRepo{
     List<Product> products;
 
-    public ProductRepo(){}
-
     public ProductRepo(List<Product> products) {
         this.products = products;
     }
@@ -14,6 +12,15 @@ public class ProductRepo{
     public Product getProduct(int id) {
         for (Product product : products) {
             if (product.id == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public Product getProduct(String name) {
+        for (Product product : products) {
+            if (product.name.equals(name)) {
                 return product;
             }
         }

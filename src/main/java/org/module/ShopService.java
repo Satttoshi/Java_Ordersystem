@@ -3,8 +3,18 @@ package org.module;
 import java.util.List;
 
 public class ShopService {
-    ProductRepo productRepo;
-    OrderRepo orderRepo;
+    private final ProductRepo productRepo;
+    private final OrderRepo orderRepo;
+
+    public ShopService(List<Product> products) {
+        this.productRepo = new ProductRepo(products);
+        this.orderRepo = new OrderRepo();
+    }
+
+    public ShopService(List<Product> products, List<Order> orders) {
+        this.productRepo = new ProductRepo(products);
+        this.orderRepo = new OrderRepo(orders);
+    }
 
     public List<Product> getProducts() {
         return productRepo.getProducts();
