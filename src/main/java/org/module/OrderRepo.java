@@ -12,7 +12,7 @@ public class OrderRepo {
         this.orders = orders;
     }
 
-    public Order getOrderById(int id) {
+    public Order getOrder(int id) {
         for (Order order : orders) {
             if (order.id == id) {
                 return order;
@@ -21,7 +21,7 @@ public class OrderRepo {
         return null;
     }
 
-    public List<Order> getOrders() {
+    public List<Order> listOrders() {
         return orders;
     }
 

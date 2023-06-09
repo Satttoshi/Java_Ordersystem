@@ -11,7 +11,7 @@ public class ProductRepo{
         this.products = products;
     }
 
-    public Product getProductById(int id) {
+    public Product getProduct(int id) {
         for (Product product : products) {
             if (product.id == id) {
                 return product;
