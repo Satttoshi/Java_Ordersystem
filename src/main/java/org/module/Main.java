@@ -60,25 +60,19 @@ public class Main {
                 }
             }
 
+            System.out.println("Please enter an OrderID: ");
+            int orderID = scanner.nextInt();
+
+
+
             // Check if int OrderID is already in use
-            int orderId = 0;
-            boolean orderIdInUse = true;
-            while (orderIdInUse) {
-                orderIdInUse = false;
-                System.out.print("Enter the OrderID as Number: ");
-                orderId = scanner.nextInt();
-                for (Order order : shopService.listOrders()) {
-                    if (order.id == orderId) {
-                        orderIdInUse = true;
-                        System.out.println("OrderID already in use, please try again.");
-                    }
-                }
-            }
 
 
-
-            Order order = new Order(1, products);
+            Order order = new Order(orderID, products);
             shopService.addOrder(order);
+            System.out.println("Order has been added" + order);
+
+            System.out.println(shopService.listOrders());
 
 
 

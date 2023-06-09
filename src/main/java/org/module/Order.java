@@ -13,6 +13,14 @@ public class Order {
     }
 
     @Override
+    public String toString() {
+        return "Order{" +
+            "id=" + id +
+            ", products=" + products +
+            '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
