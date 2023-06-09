@@ -1,5 +1,6 @@
 package org.module;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,9 +36,53 @@ public class Main {
             System.out.println(shopService.getProducts());
         }
 
-        System.out.println("Do you want to add an Order?");
+        System.out.print("Do you want to make an Order? Yes/No: ");
+
+        if(userChoice()){
+
+            List<Product> products = new ArrayList<>();
+
+            boolean orderMore = true;
+            while (orderMore) {
+
+                System.out.print("Enter the ID product you want to order: ");
+                int id = scanner.nextInt();
+                Product product = shopService.getProduct(id);
+                System.out.println("Do you want to Order " + product + "? Yes/No: ");
+                if(!userChoice()) {
+                    continue;
+                }
+                products.add(product);
+                System.out.println("You have ordered: " + product);
+                System.out.print("Do you want to order more products? Yes/No: ");
+                if(!userChoice()) {
+                    orderMore = false;
+                }
+            }
+
+            // Check if int OrderID is already in use
+            int orderId = 0;
+            boolean orderIdInUse = true;
+            while (orderIdInUse) {
+                orderIdInUse = false;
+                System.out.print("Enter the OrderID as Number: ");
+                orderId = scanner.nextInt();
+                for (Order order : shopService.listOrders()) {
+                    if (order.id == orderId) {
+                        orderIdInUse = true;
+                        System.out.println("OrderID already in use, please try again.");
+                    }
+                }
+            }
 
 
+
+            Order order = new Order(1, products);
+            shopService.addOrder(order);
+
+
+
+        }
 
     }
 
