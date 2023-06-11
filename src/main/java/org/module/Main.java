@@ -24,7 +24,7 @@ public class Main {
             }
         }
 
-        System.out.print("Do you also want to view all Products? Yes/No: ");
+        System.out.print("Do you also want to view all Products?? Yes/No: ");
 
         if(userChoice()) {
             System.out.println(shopService.getProducts());
