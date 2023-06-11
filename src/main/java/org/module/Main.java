@@ -9,13 +9,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-        ShopService shopService = new ShopService(List.of(
-            new Product(0, "Nike Shoes"),
-            new Product(1, "Polo Shirt"),
-            new Product(2, "Base Cap"),
-            new Product(3, "Tennis Racket"),
-            new Product(4, "Perfume")
-        ));
+        ShopService shopService =
 
         System.out.println("Welcome to the shop!");
         System.out.print("Do you want to view a Product? Yes/No: ");
@@ -63,17 +57,18 @@ public class Main {
             System.out.println("Please enter an OrderID: ");
             int orderID = scanner.nextInt();
 
-            // Check if int OrderID is already in use
-
             Order order = new Order(orderID, products);
             shopService.addOrder(order);
             System.out.println("Order has been added" + order);
-
-            System.out.println(shopService.listOrders());
-
-
-
         }
+
+        System.out.print("Do you want to view an Order? Yes/No: ");
+        if (userChoice()) {
+            System.out.print("Enter the ID of the order you want to view: ");
+            int id = scanner.nextInt();
+            System.out.println(shopService.getOrder(id));
+        }
+        System.out.println(shopService.listOrders());
 
     }
 
