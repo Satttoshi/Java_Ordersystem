@@ -1,22 +1,42 @@
 package org.module;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 
 public class Order {
     public String id;
     private Map<String, String> products;
+    private Status orderStatus;
+    private final Date date;
+
+    public void toggleStatus() {
+        switch (orderStatus) {
+            case PENDING -> orderStatus = Status.COMPLETED;
+            case COMPLETED -> orderStatus = Status.PENDING;
+        }
+    }
+
+
+    public String getDate() {
+        return date.toString();
+    }
 
     public Order(String id, Map<String, String> products) {
         this.id = id;
         this.products = products;
+        this.orderStatus = Status.PENDING;
+        this.date = new Date();
     }
+
 
     @Override
     public String toString() {
         return "Order{" +
-            "id=" + id +
+            "id='" + id + '\'' +
             ", products=" + products +
+            ", orderStatus=" + orderStatus +
+            ", date=" + date +
             '}';
     }
 
@@ -26,12 +46,11 @@ public class Order {
             return true;
         if (!(o instanceof Order order))
             return false;
-        return id == order.id && Objects.equals(products, order.products);
+        return Objects.equals(id, order.id) && Objects.equals(products, order.products) && orderStatus == order.orderStatus && Objects.equals(date, order.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, products);
+        return Objects.hash(id, products, orderStatus, date);
     }
-
 }
