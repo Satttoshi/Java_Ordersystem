@@ -8,6 +8,11 @@ public class ProductRepo implements Product{
 
     public ProductRepo() {
         this.products = new HashMap<>();
+        this.products.put("1", "Apple");
+        this.products.put("2", "Orange");
+        this.products.put("3", "Banana");
+        this.products.put("4", "Pineapple");
+        this.products.put("5", "Kiwi");
     }
 
     public ProductRepo(Map<String, String> products) {

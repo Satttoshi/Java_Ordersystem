@@ -1,42 +1,33 @@
 package org.module;
 
-import java.util.List;
+import java.util.Map;
 
-public class ShopService {
+public class ShopService implements Product{
     private final ProductRepo productRepo;
     private final OrderRepo orderRepo;
 
-    public ShopService(List<Product> products) {
-        this.productRepo = new ProductRepo(products);
+    public ShopService() {
+
+        this.productRepo = new ProductRepo();
         this.orderRepo = new OrderRepo();
     }
 
-    public ShopService(List<Product> products, List<Order> orders) {
-        this.productRepo = new ProductRepo(products);
-        this.orderRepo = new OrderRepo(orders);
+    public String getProduct(String name) {
+        return this.productRepo.getProduct(name);
     }
-
-    public List<Product> getProducts() {
-        return productRepo.getProducts();
-    }
-
-    public Product getProduct(int id) {
-        return productRepo.getProduct(id);
-    }
-
-    public Product getProduct(String name) {
-        return productRepo.getProduct(name);
+    public Map<String, String> listProducts() {
+        return this.productRepo.listProducts();
     }
 
     public void addOrder(Order order) {
         orderRepo.addOrder(order);
     }
 
-    public Order getOrder(int id) {
+    public Order getOrder(String id) {
         return orderRepo.getOrder(id);
     }
 
-    public List<Order> listOrders() {
+    public Map<String, Order> listOrders() {
         return orderRepo.listOrders();
     }
 

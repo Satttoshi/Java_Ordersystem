@@ -1,52 +1,46 @@
 package org.module;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-        ShopService shopService =
+        ShopService shopService = new ShopService();
 
         System.out.println("Welcome to the shop!");
         System.out.print("Do you want to view a Product? Yes/No: ");
         if(userChoice()) {
-            System.out.print("Enter the ID or name of the product you want to view: ");
-            try {
-                int id = scanner.nextInt();
-                System.out.println(shopService.getProduct(id));
-            } catch (Exception e) {
-                String name = scanner.nextLine();
-                System.out.println(shopService.getProduct(name));
-            }
+            System.out.print("Enter the ID of the product you want to view: ");
+            String name = scanner.nextLine();
+            System.out.println(shopService.getProduct(name));
+
         }
 
         System.out.print("Do you also want to view all Products?? Yes/No: ");
 
         if(userChoice()) {
-            System.out.println(shopService.getProducts());
+            System.out.println(shopService.listProducts());
         }
 
         System.out.print("Do you want to make an Order? Yes/No: ");
 
         if(userChoice()){
 
-            List<Product> products = new ArrayList<>();
+            Map<String,String> products = new HashMap<>();
 
             boolean orderMore = true;
             while (orderMore) {
 
                 System.out.print("Enter the ID product you want to order: ");
-                int id = scanner.nextInt();
-                Product product = shopService.getProduct(id);
+                String id = scanner.nextLine();
+                String product = shopService.getProduct(id);
                 System.out.println("Do you want to Order " + product + "? Yes/No: ");
                 if(!userChoice()) {
                     continue;
                 }
-                products.add(product);
+                products.put(id, product);
                 System.out.println("You have ordered: " + product);
                 System.out.print("Do you want to order more products? Yes/No: ");
                 if(!userChoice()) {
@@ -55,7 +49,7 @@ public class Main {
             }
 
             System.out.println("Please enter an OrderID: ");
-            int orderID = scanner.nextInt();
+            String orderID = scanner.nextLine();
 
             Order order = new Order(orderID, products);
             shopService.addOrder(order);
@@ -65,7 +59,7 @@ public class Main {
         System.out.print("Do you want to view an Order? Yes/No: ");
         if (userChoice()) {
             System.out.print("Enter the ID of the order you want to view: ");
-            int id = scanner.nextInt();
+            String id = scanner.nextLine();
             System.out.println(shopService.getOrder(id));
         }
         System.out.println(shopService.listOrders());

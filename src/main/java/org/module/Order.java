@@ -1,13 +1,13 @@
 package org.module;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Order {
-    int id;
-    List<Product> products;
+    public String id;
+    private Map<String, String> products;
 
-    public Order(int id, List<Product> products) {
+    public Order(String id, Map<String, String> products) {
         this.id = id;
         this.products = products;
     }
@@ -33,4 +33,5 @@ public class Order {
     public int hashCode() {
         return Objects.hash(id, products);
     }
+
 }

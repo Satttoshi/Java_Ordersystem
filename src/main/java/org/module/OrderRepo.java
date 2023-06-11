@@ -1,35 +1,31 @@
 package org.module;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class OrderRepo {
 
-    List<Order> orders;
+    Map<String, Order> orders;
 
     public OrderRepo(){
-        this.orders = new ArrayList<>();
+        this.orders = new HashMap<>();
     }
 
-    public OrderRepo(List<Order> orders) {
+    public OrderRepo(Map<String, Order> orders) {
         this.orders = orders;
     }
 
-    public Order getOrder(int id) {
-        for (Order order : orders) {
-            if (order.id == id) {
-                return order;
-            }
-        }
-        return null;
-    }
-
-
-    public List<Order> listOrders() {
+    public Map<String, Order> listOrders() {
         return orders;
     }
 
-    public void addOrder(Order order) {
-        orders.add(order);
+    public Order getOrder(String id) {
+        try {
+            return Optional.ofNullable(orders.get(id)).orElseThrow(NoSuchElementException::new);
+        } catch (NoSuchElementException e) {
+            return new Order(String.valueOf(orders.size() + 1), new HashMap<>());
+        }
+    }
+
+    void addOrder(Order order) {orders.put(order.id, order);
     }
 }
